@@ -1,0 +1,9 @@
+# settings to be used when running in local dev environment 
+
+logging.level.com.merikan: debug
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS "public";Mode=MySQL;
+    driver-class-name: org.h2.Driver
+    user: sa
+    password: ''
