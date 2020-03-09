@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: "off"
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+    default-property-inclusion: non_null
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSS"
+  jpa:
+    open-in-view: false
