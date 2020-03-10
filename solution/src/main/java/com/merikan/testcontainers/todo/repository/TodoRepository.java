@@ -1,0 +1,10 @@
+package com.merikan.testcontainers.todo.repository;
+
+import com.merikan.testcontainers.todo.model.Todo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TodoRepository extends JpaRepository<Todo, Long> {
+
+}

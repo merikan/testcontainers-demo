@@ -1,8 +1,8 @@
-#Intro
+# Intro
 This is a small Spring Boot application to be used as an example 
 when using Testcontainers.
 
-
+The solution can be found in the [solution](solution/README.MD) directory 
 
 ## License
 
