@@ -5,6 +5,7 @@ import com.merikan.testcontainers.todo.repository.TodoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ActiveProfiles("integrationtest")
 @Transactional
 @Testcontainers
+@Disabled("This test is disabled since we are using abstract base class instead. See this as an example of how-to")
 public class TodoServiceImplStandardIT {
     private final EasyRandom random = new EasyRandom();
 
