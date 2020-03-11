@@ -15,7 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("integrationtest")
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 @Testcontainers
-public class AbstractIntegrationTest {
+public abstract class AbstractIntegrationTest {
 
     static final MariaDBContainer mariadb;
 
