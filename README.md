@@ -1,8 +1,14 @@
-# Intro
-This is a small Spring Boot application to be used as an example 
-when using Testcontainers.
+# How to use Testcontainers
+## Intro
 
-The solution can be found in the [solution](solution/README.MD) directory 
+This is a Spring Boot application used as an example of how to use Testcontainers in the project and its integration tests. 
+It showcases you how to migrate from a embedded H2 database in your integration tests and instead use a real MariaDb database. 
+
+This project consists of several directories that contain the application both before and after the changes. 
+
+We have two folders, origin and solution.
+* the [origin](origin) directory contains the source code before we migrated our tests from H2 to Testcontainers.
+* the [solution](solution) directory contains the source code after we migrated our tests from H2 to Testcontainers.
 
 ## License
 
