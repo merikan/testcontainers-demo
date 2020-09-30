@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("integrationtest")
-@Transactional
 @Testcontainers
 @Disabled("This test is disabled since we are using abstract base class instead. See this as an example of how-to")
 public class TodoServiceImplStandardIT {

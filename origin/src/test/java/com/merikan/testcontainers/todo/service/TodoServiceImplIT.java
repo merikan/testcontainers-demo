@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("integrationtest")
-@Transactional
 public class TodoServiceImplIT {
     private final EasyRandom random = new EasyRandom();
 

@@ -28,7 +28,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
-@Transactional
 public class TodoServiceImplIT extends AbstractIntegrationTest {
 
     private final EasyRandom random = new EasyRandom();
