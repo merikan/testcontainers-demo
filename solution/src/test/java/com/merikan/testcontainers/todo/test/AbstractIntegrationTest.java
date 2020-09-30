@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -13,7 +15,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("integrationtest")
-@ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 @Testcontainers
 public abstract class AbstractIntegrationTest {
 
@@ -24,14 +25,10 @@ public abstract class AbstractIntegrationTest {
         mariadb.start();
     }
 
-    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        @Override
-        public void initialize(ConfigurableApplicationContext context) {
-            TestPropertyValues.of(
-                "spring.datasource.url=" + mariadb.getJdbcUrl(),
-                "spring.datasource.username=" + mariadb.getUsername(),
-                "spring.datasource.password=" + mariadb.getPassword()
-            ).applyTo(context.getEnvironment());
-        }
+    @DynamicPropertySource
+    static void properties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", mariadb::getJdbcUrl);
+        registry.add("spring.datasource.username", mariadb::getUsername);
+        registry.add("spring.datasource.password", mariadb::getPassword);
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -30,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ContextConfiguration(initializers = TodoServiceImplStandardIT.Initializer.class)
 @ActiveProfiles("integrationtest")
 @Transactional
 @Testcontainers
@@ -39,7 +40,7 @@ public class TodoServiceImplStandardIT {
     private final EasyRandom random = new EasyRandom();
 
     @Container
-    public static MariaDBContainer mariaDB = new MariaDBContainer("mariadb:10.3.6");
+    public static MariaDBContainer mariadb = new MariaDBContainer("mariadb:10.3.6");
 
     @Autowired
     private TodoService uut;
@@ -78,15 +79,11 @@ public class TodoServiceImplStandardIT {
         }
     }
 
-    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        @Override
-        public void initialize(ConfigurableApplicationContext context) {
-            TestPropertyValues.of(
-                "spring.datasource.url=" + mariaDB.getJdbcUrl(),
-                "spring.datasource.username=" + mariaDB.getUsername(),
-                "spring.datasource.password=" + mariaDB.getPassword()
-            ).applyTo(context.getEnvironment());
-        }
+    @DynamicPropertySource
+    static void properties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", mariadb::getJdbcUrl);
+        registry.add("spring.datasource.username", mariadb::getUsername);
+        registry.add("spring.datasource.password", mariadb::getPassword);
     }
 
 }
