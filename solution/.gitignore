@@ -1,8 +1,10 @@
+### project
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+/docker/.volumes/
 
 ### STS ###
 .apt_generated
@@ -29,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+

@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  maria-db:
+    image: mariadb:10.5.5
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: todo-db
+      MYSQL_USER: todo-user
+      MYSQL_PASSWORD: todo-password
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./docker/.volumes/mariadb/form-db:/var/lib/mysql

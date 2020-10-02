@@ -8,6 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -19,9 +20,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public abstract class AbstractIntegrationTest {
 
     static final MariaDBContainer mariadb;
+    private static GenericContainer redis;
 
     static {
-        mariadb = new MariaDBContainer("mariadb:10.3.6");
+        mariadb = new MariaDBContainer("mariadb:10.5.5");
         mariadb.start();
     }
 
