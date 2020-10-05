@@ -20,10 +20,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public abstract class AbstractIntegrationTest {
 
     static final MariaDBContainer mariadb;
-    private static GenericContainer redis;
 
     static {
-        mariadb = new MariaDBContainer("mariadb:10.5.5");
+        mariadb = (MariaDBContainer) new MariaDBContainer("mariadb:10.5.5")
+            .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
         mariadb.start();
     }
 
