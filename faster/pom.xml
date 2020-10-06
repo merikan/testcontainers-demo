@@ -9,7 +9,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.merikan.testcontainers</groupId>
-  <artifactId>todo-solution</artifactId>
+  <artifactId>todo-faster</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <description>Testcontainers with Spring Boot and Junit 5</description>

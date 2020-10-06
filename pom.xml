@@ -12,6 +12,7 @@
   <modules>
     <module>origin</module>
     <module>solution</module>
+    <module>faster</module>
   </modules>
 
 

@@ -1,0 +1,38 @@
+app:
+  db:
+    host:
+    port: 3306
+    user:
+    password:
+    database:
+
+spring:
+  main:
+    banner-mode: "off"
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+    default-property-inclusion: non_null
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSS"
+  datasource:
+    url: jdbc:mariadb://${app.db.host}:${app.db.port}/${app.db.database}?useUnicode=true&characterEncoding=UTF-8&useMysqlMetadata=true
+    username: ${app.db.user}
+    password: ${app.db.password}
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      auto-commit: false
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 20
+          order_inserts: true
+

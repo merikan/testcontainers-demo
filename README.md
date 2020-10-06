@@ -9,6 +9,7 @@ This project consists of several directories that contain the application both b
 We have two folders, origin and solution.
 * the [origin](origin) directory contains the source code before we migrated our tests from H2 to Testcontainers.
 * the [solution](solution) directory contains the source code after we migrated our tests from H2 to Testcontainers.
+* the [faster](faster) directory contains the source code when doing some changes to make our tests run faster
 
 ## License
 

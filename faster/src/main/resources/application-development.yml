@@ -1,0 +1,12 @@
+# settings to be used when running in local dev environment 
+
+app:
+  db:
+    host: localhost
+    port: 13306
+    database: todo-db
+    user: todo-user
+    password: todo-password
+
+logging.level.com.merikan: debug
+

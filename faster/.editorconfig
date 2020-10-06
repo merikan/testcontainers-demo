@@ -1,0 +1,32 @@
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+root = true
+
+# global settings
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# programming languages
+[*.{java,groovy,kt}]
+indent_style = space
+indent_size = 4
+
+# markup languages
+[*.{md,markdown,asciidoc,adoc}]
+trim_trailing_whitespace = false
+
+# yaml
+[*.{yml,yaml,raml}]
+trim_trailing_whitespace = false
+
+# makefile
+[{Makefile**, **.mk}]
+indent_style = tab
+indent_size = 4
+
