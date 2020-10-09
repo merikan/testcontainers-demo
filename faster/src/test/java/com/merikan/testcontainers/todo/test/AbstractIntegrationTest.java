@@ -22,10 +22,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @Slf4j
 public abstract class AbstractIntegrationTest {
 
-    static final MariaDBContainer mariadb1;
-    static final MariaDBContainer mariadb2;
-    static final GenericContainer redis;
-    static final GenericContainer sftp;
+    private static final MariaDBContainer mariadb1;
+    private static final MariaDBContainer mariadb2;
+    private static final GenericContainer redis;
+    private static final GenericContainer sftp;
 
     static {
         Instant start = Instant.now();

@@ -20,7 +20,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @Testcontainers
 public abstract class AbstractIntegrationTest {
 
-    static final MariaDBContainer mariadb;
+    private static final MariaDBContainer mariadb;
 
     static {
         mariadb = (MariaDBContainer) new MariaDBContainer(DockerImageName.parse("mariadb:10.5.5"))

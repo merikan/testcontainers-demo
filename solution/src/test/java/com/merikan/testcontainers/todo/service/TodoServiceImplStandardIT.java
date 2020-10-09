@@ -40,7 +40,7 @@ public class TodoServiceImplStandardIT {
     private final EasyRandom random = new EasyRandom();
 
     @Container
-    public static MariaDBContainer mariadb = new MariaDBContainer(DockerImageName.parse("mariadb:10.5.5"));
+    private static final MariaDBContainer mariadb = new MariaDBContainer(DockerImageName.parse("mariadb:10.5.5"));
 
     @Autowired
     private TodoService uut;
