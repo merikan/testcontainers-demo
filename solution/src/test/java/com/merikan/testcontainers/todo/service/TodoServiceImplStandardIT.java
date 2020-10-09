@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -39,7 +40,7 @@ public class TodoServiceImplStandardIT {
     private final EasyRandom random = new EasyRandom();
 
     @Container
-    public static MariaDBContainer mariadb = new MariaDBContainer("mariadb:10.5.5");
+    public static MariaDBContainer mariadb = new MariaDBContainer(DockerImageName.parse("mariadb:10.5.5"));
 
     @Autowired
     private TodoService uut;
