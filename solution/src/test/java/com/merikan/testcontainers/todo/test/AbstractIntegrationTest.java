@@ -23,7 +23,7 @@ public abstract class AbstractIntegrationTest {
     private static final MariaDBContainer mariadb;
 
     static {
-        mariadb = (MariaDBContainer) new MariaDBContainer(MARIADB_IMAGE)
+        mariadb = new MariaDBContainer<>(MARIADB_IMAGE)
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
         mariadb.start();
     }
