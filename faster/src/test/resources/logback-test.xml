@@ -10,6 +10,7 @@
   <root level="warn">
     <appender-ref ref="CONSOLE"/>
   </root>
+  <logger name="com.merikan.testcontainers" level="INFO"/>
   <logger name="org.testcontainers" level="INFO"/>
   <logger name="com.github.dockerjava" level="WARN"/>
 </configuration>
