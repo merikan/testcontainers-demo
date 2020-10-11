@@ -19,11 +19,11 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("integrationtest")
 @Testcontainers
 public abstract class AbstractIntegrationTest {
-
+    private static final DockerImageName MARIADB_IMAGE = DockerImageName.parse("mariadb:10.5.5");
     private static final MariaDBContainer mariadb;
 
     static {
-        mariadb = (MariaDBContainer) new MariaDBContainer(DockerImageName.parse("mariadb:10.5.5"))
+        mariadb = (MariaDBContainer) new MariaDBContainer(MARIADB_IMAGE)
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
         mariadb.start();
     }

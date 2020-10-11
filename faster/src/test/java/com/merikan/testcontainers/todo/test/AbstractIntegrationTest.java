@@ -22,6 +22,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @Slf4j
 public abstract class AbstractIntegrationTest {
 
+    private static final DockerImageName MARIADB_IMAGE = DockerImageName.parse("mariadb:10.5.5");
+    private static final DockerImageName REDIS_IMAGE = DockerImageName.parse("redis:5.0.5");
+    private static final DockerImageName SFTP_IMAGE = DockerImageName.parse("atmoz/sftp@sha256:975dc193e066e4226a3c4299536bb6c3d98cec27d06583055c25ccbdc30d0b61");
+
     private static final MariaDBContainer mariadb1;
     private static final MariaDBContainer mariadb2;
     private static final GenericContainer redis;
@@ -30,19 +34,19 @@ public abstract class AbstractIntegrationTest {
     static {
         Instant start = Instant.now();
 
-        mariadb1 = new MariaDBContainer<>(DockerImageName.parse("mariadb:10.5.5"))
+        mariadb1 = new MariaDBContainer<>(MARIADB_IMAGE)
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci")
             .withReuse(true)
             .withLabel("reuse.UUID", "e06d7a87-7d7d-472e-a047-e6c81f61d2a4");
-        mariadb2 = new MariaDBContainer<>(DockerImageName.parse("mariadb:10.5.5"))
+        mariadb2 = new MariaDBContainer<>(MARIADB_IMAGE)
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci")
             .withReuse(true)
             .withLabel("reuse.UUID", "282b8993-097c-4fd4-98f1-94daf3466dd6");
-        redis = new GenericContainer<>(DockerImageName.parse("redis:5.0.5"))
+        redis = new GenericContainer<>(REDIS_IMAGE)
             .withExposedPorts(6379)
             .withReuse(true)
             .withLabel("reuse.UUID", "0429783b-c855-4b32-8239-258cba232b63");
-        sftp = new GenericContainer<>(DockerImageName.parse("atmoz/sftp@sha256:975dc193e066e4226a3c4299536bb6c3d98cec27d06583055c25ccbdc30d0b61"))
+        sftp = new GenericContainer<>(SFTP_IMAGE)
             .withCommand(String.format("%s:%s:::upload", "SFTP_USER", "SFTP_PASSWORD"))
             .withReuse(true)
             .withLabel("reuse.UUID", "0293a405-e435-4f03-9e4b-b6160d9e60fe");

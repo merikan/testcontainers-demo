@@ -10,14 +10,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -37,10 +32,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Testcontainers
 @Disabled("This test is disabled since we are using abstract base class instead. See this as an example of how-to")
 public class TodoServiceImplStandardIT {
+    private static final DockerImageName MARIADB_IMAGE = DockerImageName.parse("mariadb:10.5.5");
     private final EasyRandom random = new EasyRandom();
 
     @Container
-    private static final MariaDBContainer mariadb = new MariaDBContainer<>(DockerImageName.parse("mariadb:10.5.5"));
+    private static final MariaDBContainer mariadb = new MariaDBContainer<>(MARIADB_IMAGE);
 
     @Autowired
     private TodoService uut;
