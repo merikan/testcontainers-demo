@@ -22,11 +22,11 @@ The following directories are available
 ```
 $ git clone https://github.com/merikan/testcontainers-demo.git
 ```
-1. cd into the desired directory
+2. cd into the desired directory
 ```
 $ cd testcontainers-demo/faster
 ```
-1. and run the tests
+3. and run the tests
 ```
 $ ./mvnw clean test verify
 ```
