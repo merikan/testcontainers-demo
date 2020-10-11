@@ -36,12 +36,6 @@ public class TodoServiceImplTest {
     }
 
     @Test
-    @Disabled("This test is ignored")
-    public void get_shouldReturn() {
-        // ignored test method
-    }
-
-    @Test
     public void findAll() {
         // should be implemented
     }
