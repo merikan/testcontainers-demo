@@ -19,7 +19,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("integrationtest")
-@Testcontainers
 @Slf4j
 public abstract class AbstractIntegrationTest {
 
