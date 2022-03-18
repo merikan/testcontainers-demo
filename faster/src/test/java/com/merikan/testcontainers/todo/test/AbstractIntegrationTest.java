@@ -9,6 +9,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.lifecycle.Startables;
 import org.testcontainers.utility.DockerImageName;
 
 import java.time.Duration;
@@ -56,9 +57,18 @@ public abstract class AbstractIntegrationTest {
             .withCommand(String.format("%s:%s:::upload", "SFTP_USER", "SFTP_PASSWORD"))
             .withReuse(true)
             .withLabel("reuse.UUID", "0293a405-e435-4f03-9e4b-b6160d9e60fe");
-        Stream.of(mariadb1, mariadb2, redis, kafka, sftp).parallel().forEach(GenericContainer::start);
+        Startables.deepStart(Stream.of(mariadb1, mariadb2, redis, kafka, sftp)).join();
 
-        log.info("🐳 TestContainers started in {}", Duration.between(start, Instant.now()));
+        // start in parallel
+//        mariadb1 = new MariaDBContainer<>(MARIADB_IMAGE)
+//            .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
+//        mariadb2 = new MariaDBContainer<>(MARIADB_IMAGE)
+//            .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
+//        redis = new GenericContainer<>(REDIS_IMAGE).withExposedPorts(6379);
+//        kafka = new KafkaContainer(KAFKA_IMAGE);
+//        sftp = new GenericContainer<>(SFTP_IMAGE)
+//            .withCommand(String.format("%s:%s:::upload", "SFTP_USER", "SFTP_PASSWORD"));
+//        Startables.deepStart(Stream.of(mariadb1, mariadb2, redis, kafka, sftp)).join();
 
         // start in sequence
 //        mariadb1 = new MariaDBContainer<>(MARIADB_IMAGE)
@@ -75,16 +85,7 @@ public abstract class AbstractIntegrationTest {
 //            .withCommand(String.format("%s:%s:::upload", "SFTP_USER", "SFTP_PASSWORD"));
 //        sftp.start();
 
-        // start in parallel
-//        mariadb1 = new MariaDBContainer<>(MARIADB_IMAGE)
-//            .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
-//        mariadb2 = new MariaDBContainer<>(MARIADB_IMAGE)
-//            .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
-//        redis = new GenericContainer<>(REDIS_IMAGE).withExposedPorts(6379);
-//        kafka = new KafkaContainer(KAFKA_IMAGE);
-//        sftp = new GenericContainer<>(SFTP_IMAGE)
-//            .withCommand(String.format("%s:%s:::upload", "SFTP_USER", "SFTP_PASSWORD"));
-//        Stream.of(mariadb1, mariadb2, redis, kafka, sftp).parallel().forEach(GenericContainer::start);
+        log.info("🐳 TestContainers started in {}", Duration.between(start, Instant.now()));
 
     }
 
