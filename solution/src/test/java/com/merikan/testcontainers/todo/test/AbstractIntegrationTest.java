@@ -29,8 +29,11 @@ public abstract class AbstractIntegrationTest {
 
     @DynamicPropertySource
     static void properties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mariadb::getJdbcUrl);
-        registry.add("spring.datasource.username", mariadb::getUsername);
-        registry.add("spring.datasource.password", mariadb::getPassword);
+        registry.add("app.db.host", mariadb::getContainerIpAddress);
+        registry.add("app.db.port", () -> mariadb.getMappedPort(3306));
+        registry.add("app.db.database", mariadb::getDatabaseName);
+        registry.add("app.db.user", mariadb::getUsername);
+        registry.add("app.db.password", mariadb::getPassword);
+
     }
 }

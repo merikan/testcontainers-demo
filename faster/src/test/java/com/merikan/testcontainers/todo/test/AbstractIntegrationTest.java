@@ -91,9 +91,11 @@ public abstract class AbstractIntegrationTest {
 
     @DynamicPropertySource
     static void properties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mariadb1::getJdbcUrl);
-        registry.add("spring.datasource.username", mariadb1::getUsername);
-        registry.add("spring.datasource.password", mariadb1::getPassword);
+        registry.add("app.db.host", mariadb1::getContainerIpAddress);
+        registry.add("app.db.port", () -> mariadb1.getMappedPort(3306));
+        registry.add("app.db.database", mariadb1::getDatabaseName);
+        registry.add("app.db.user", mariadb1::getUsername);
+        registry.add("app.db.password", mariadb1::getPassword);
         //.... and the others come here
     }
 }
